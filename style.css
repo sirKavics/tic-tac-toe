@@ -4,12 +4,10 @@
   box-sizing: border-box;
 }
 
-.page__wrapper {
-
-}
-
 .board__title {
   font-family: "Montserrat", sans-serif;
+  font-size: 62px;
+  font-weight: 900;
   display: flex;
   justify-content: center;
 }
@@ -17,16 +15,19 @@
 .board__wrapper {
   display: flex;
   flex-wrap: wrap;
-  width: 600px;
-  height: 600px;
+  width: 650px;
+  height: 650px;
   margin: 0 auto;
-  margin-bottom: 24px;
+  margin-bottom: 42px;
+  border: 25px solid black;
 }
 
 .board__square {
-  border: 5px solid black;
+  border: 8px solid black;
   background-color: white;
-  font-size: 80px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,9 +45,11 @@
 .restart {
   padding: 12px 24px;
   width: 30%;
-  border: none;
+  border: 5px solid black;
   border-radius: 20px;
-  font-size: 20px;
+  background-color: transparent;
+  font-size: 24px;
   font-family: "Montserrat", sans-serif;
-  font-weight: 500;
+  font-weight: 800;
+  cursor: pointer;
 }
