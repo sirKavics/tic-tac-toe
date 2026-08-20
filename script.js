@@ -13,16 +13,40 @@
 
 // ---------------------------------------------------------------------
 
-const allSquares = document.querySelectorAll('.board__square');
-const title = document.querySelector('.board__title')
+const allSquares = document.querySelectorAll(".board__square");
+const title = document.querySelector(".board__title");
 
-let currentPlayer = 'X';
+let currentPlayer = "X";
+let board = ["X", "O", "X", "O", "X", "O", "X", "O", "X"];
 
 allSquares.forEach((square, i) => {
-    square.addEventListener('click', () => {
-    console.log('clicked');
+  square.addEventListener("click", () => {
+    console.log("clicked");
     square.innerHTML = currentPlayer;
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+
+    checkWin();
+
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
     title.innerHTML = `${currentPlayer}'s TURN!`;
-    })
+  });
 });
+
+function checkWin() {
+  const winningCombos = [
+    // Horizontal Wins
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    // Vertical Wins
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    // Diagonal Wins
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  winningCombos.forEach((combo) => {
+    console.log(winningCombos)
+  })
+}
