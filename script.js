@@ -17,12 +17,13 @@ const allSquares = document.querySelectorAll(".board__square");
 const title = document.querySelector(".board__title");
 
 let currentPlayer = "X";
-let board = ["X", "O", "X", "O", "X", "O", "X", "O", "X"];
+let board = new Array(9);
 
 allSquares.forEach((square, i) => {
   square.addEventListener("click", () => {
-    console.log("clicked");
     square.innerHTML = currentPlayer;
+    board[i] = currentPlayer;
+    console.log(board)
 
     checkWin();
 
@@ -46,7 +47,19 @@ function checkWin() {
     [2, 4, 6],
   ];
 
-  winningCombos.forEach((combo) => {
-    console.log(winningCombos)
-  })
-}
+  for (let i = 0; i < winningCombos.length; i++) {
+    const matchingCombo = winningCombos[i];
+
+    let symbol1 = board[matchingCombo[0]];
+    let symbol2 = board[matchingCombo[1]];
+    let symbol3 = board[matchingCombo[2]];
+
+    if (!symbol1 || !symbol2 || !symbol3) {
+        continue;
+    }
+
+    if (symbol1 === symbol2 && symbol2 === symbol3) {
+        console.log('winner at', matchingCombo)
+    }
+  }
+};
