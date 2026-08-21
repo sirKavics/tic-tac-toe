@@ -17,15 +17,25 @@ const allSquares = document.querySelectorAll(".board__square");
 const title = document.querySelector(".board__title");
 
 let currentPlayer = "X";
+let gameOver = false;
 let board = new Array(9);
 
-allSquares.forEach((square, i) => {
-  square.addEventListener("click", () => {
+allSquares.forEach((square, i) => { 
+    square.addEventListener("click", () => {
+
+    if (gameOver) {
+      return;
+    };
+
     square.innerHTML = currentPlayer;
     board[i] = currentPlayer;
     console.log(board)
 
-    checkWin();
+    if (checkWin()) {
+        title.innerHTML = `${currentPlayer} WINS!`
+        gameOver = true;
+        return;
+    };
 
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     title.innerHTML = `${currentPlayer}'s TURN!`;
@@ -59,7 +69,8 @@ function checkWin() {
     }
 
     if (symbol1 === symbol2 && symbol2 === symbol3) {
-        console.log('winner at', matchingCombo)
+        console.log('winner at', matchingCombo);
+        return true;
     }
   }
 };
