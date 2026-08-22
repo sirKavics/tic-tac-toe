@@ -20,27 +20,41 @@ let currentPlayer = "X";
 let gameOver = false;
 let board = new Array(9);
 
-allSquares.forEach((square, i) => { 
-    square.addEventListener("click", () => {
-
-    if (gameOver) {
+allSquares.forEach((square, i) => {
+  square.addEventListener("click", () => {
+    if (square.innerHTML || gameOver) {
       return;
-    };
+    }
 
     square.innerHTML = currentPlayer;
     board[i] = currentPlayer;
-    console.log(board)
+    console.log(board);
 
     if (checkWin()) {
-        title.innerHTML = `${currentPlayer} WINS!`
-        gameOver = true;
-        return;
-    };
+      title.innerHTML = `${currentPlayer} WINS!`;
+      gameOver = true;
+      return;
+    }
+
+    if (checkDraw()) {
+      title.innerHTML = `IT'S A DRAW!`
+      gameOver = true;
+      return;
+    }
 
     currentPlayer = currentPlayer === "X" ? "O" : "X";
-    title.innerHTML = `${currentPlayer}'s TURN!`;
+    title.innerHTML = `${currentPlayer}'s TURN`;
   });
 });
+
+function checkDraw() {
+  for (let i = 0; i < board.length; i++) {
+    if (!board[i]) {
+        return false;
+    }
+  }
+  return true;
+}
 
 function checkWin() {
   const winningCombos = [
@@ -65,12 +79,12 @@ function checkWin() {
     let symbol3 = board[matchingCombo[2]];
 
     if (!symbol1 || !symbol2 || !symbol3) {
-        continue;
+      continue;
     }
 
     if (symbol1 === symbol2 && symbol2 === symbol3) {
-        console.log('winner at', matchingCombo);
-        return true;
+      console.log("winner at", matchingCombo);
+      return true;
     }
   }
-};
+}
